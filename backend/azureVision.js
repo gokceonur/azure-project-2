@@ -36,9 +36,16 @@ let azureVision = (imageUrl, callback) => {
     let jsonResponse = JSON.stringify(JSON.parse(body), null, "  ");
     console.log("JSON Response\n");
     console.log(jsonResponse);
-    let captions = JSON.parse(jsonResponse).description.captions;
-    callback(captions);
-    db.writeData(imageUrl, captions[0].text, captions[0].confidence);
+    if (JSON.parse(jsonResponse).description.captions != undefined) {
+      let captions = JSON.parse(jsonResponse).description.captions;
+      callback(captions);
+      db.writeData(imageUrl, captions[0].text, captions[0].confidence);
+    } else {
+      callback({
+        text: "Invalid url.",
+        confidence: 1,
+      });
+    }
   });
 };
 
