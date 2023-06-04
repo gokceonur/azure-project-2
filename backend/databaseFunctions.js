@@ -15,22 +15,6 @@ let writeData = async (url, text, confidence) => {
   });
 };
 
-let readData = async (callback) => {
-  let sql = `SELECT * FROM mysqlproject.history ORDER BY id DESC LIMIT 10`;
-
-  console.log(`🚀 ~ file: databaseFunctions.js:25 ~ readData ~ sql`, sql);
-
-  db.connection.query(sql, (err, result) => {
-    if (err) {
-      console.log("error: ", err);
-    } else {
-      console.log("result: ", result);
-      callback(result);
-    }
-  });
-};
-
 module.exports = {
   writeData: writeData,
-  readData: readData,
 };

@@ -1,6 +1,6 @@
 function getWeather() {
   var input = document.getElementById("input").value;
-  var url = "http://localhost:3000/vision?imageUrl=" + input;
+  var url = "http://52.232.64.248:3000/vision?imageUrl=" + input;
   console.log(url);
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url);
